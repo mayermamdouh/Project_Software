@@ -48,8 +48,8 @@ class _Store_pageState extends State<Store_page> {
 
             items: const [
               BottomNavigationBarItem(icon:Icon(Icons.home),label: ''),
-              BottomNavigationBarItem(icon:Icon(Icons.home),label: ''),
-              BottomNavigationBarItem(icon:Icon(Icons.home),label: ''),
+              BottomNavigationBarItem(icon:Icon(Icons.camera_alt_outlined),label: ''),
+              BottomNavigationBarItem(icon:Icon(Icons.favorite),label: ''),
               BottomNavigationBarItem(icon:Icon(Icons.shopping_cart_outlined),label: ''),
               BottomNavigationBarItem(icon:Icon(Icons.person),label: ''),
             ],

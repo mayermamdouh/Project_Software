@@ -137,22 +137,22 @@ class _page0State extends State<page0> {
                               ),
                             ),
                           ),
-                           Expanded(
-                             child: InkWell(
-                              onTap:(){},
-                               child: Column(
-                                 children: const [
-                                   CircleAvatar(
-                                     radius: 70,
-                                    backgroundImage:  NetworkImage('https://img.freepik.com/free-photo/little-cute-boy-with-ginger-hair-white-t-shirt-having-fun-home-popping-eyes-with-opened-mouth_176420-15473.jpg?w=1800&t=st=1670176479~exp=1670177079~hmac=0c0ec3d3cbdc91d4fe19e26c16590fa1099cf6a5730663a6abe64ef88b327bd2',
-                                  ),
-                                  ),
-                                   SizedBox(height: 10,),
-                                   Text('mayer'),
-                                 ],
-                               ),
-                             ),
-                           ),
+                           // Expanded(
+                           //   child: InkWell(
+                           //    onTap:(){},
+                           //     child: Column(
+                           //       children: const [
+                           //         CircleAvatar(
+                           //           radius: 70,
+                           //          backgroundImage:  NetworkImage('https://img.freepik.com/free-photo/little-cute-boy-with-ginger-hair-white-t-shirt-having-fun-home-popping-eyes-with-opened-mouth_176420-15473.jpg?w=1800&t=st=1670176479~exp=1670177079~hmac=0c0ec3d3cbdc91d4fe19e26c16590fa1099cf6a5730663a6abe64ef88b327bd2',
+                           //        ),
+                           //        ),
+                           //         SizedBox(height: 10,),
+                           //         Text('mayer'),
+                           //       ],
+                           //     ),
+                           //   ),
+                           // ),
 
                         ],
                       );
@@ -162,7 +162,7 @@ class _page0State extends State<page0> {
                         height: 20.0,
                       );
                     },
-                    itemCount: 3,
+                    itemCount: 5,
                   ),
 
                 ],
