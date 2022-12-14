@@ -27,9 +27,6 @@ class SoicalLoginCubits extends Cubit<SoicalLoginStates> {
         password: Password,
       )
           .then((value) {
-        print(value.user!.email);
-        print(value.user!.uid);
-
         emit(SoicalLoginSuccessStates(value.user!.uid));
       }).catchError((error) {
         print(error.toString());

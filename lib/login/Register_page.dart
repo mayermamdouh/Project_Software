@@ -1,5 +1,7 @@
 import 'package:conditional_builder/conditional_builder.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_firebase/login/user_model_function.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../bloks/Cubit_Register.dart';
@@ -172,7 +174,14 @@ class _Register_pageState extends State<Register_page> {
                               height: 40,
                               isUpperCase: true,
                               function: () {
-                                if (FormKey2.currentState!.validate()) {SoicalRegisterCubits.get(context).userRegister(
+                                if (FormKey2.currentState!.validate()) {
+                                  UserData.name = Nameconroller.text;
+                                  UserData.phoneNumber = Mobileconroller.text;
+                                  UserData.age = ChildAgeconroller.text;
+                                  UserData.email =  Emailconroller.text;
+                                  UserData.password = Passwordconroller.text;
+
+                                  SoicalRegisterCubits.get(context).userRegister(
                                       name: Nameconroller.text,
                                       phoneNumber: Mobileconroller.text,
                                       age: ChildAgeconroller.text,

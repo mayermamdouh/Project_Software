@@ -124,7 +124,7 @@ class _login_pageState extends State<login_page> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
+                          const Text(
                             'Don\'t have an Account?',
                           ),
                           TextButton(

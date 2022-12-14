@@ -1,5 +1,7 @@
+import 'package:flutter/material.dart';
+
 class User_Register_model{
-   late String name;
+   late String name ;
    late String phoneNumber;
    late String age;
    late String email;
@@ -44,4 +46,13 @@ class User_Register_model{
        'uId':uId,
      };
    }
+}
+
+class UserData{
+  static String name ='';
+  static String phoneNumber='';
+  static String age='';
+  static String email='';
+  static String password='';
+  static String uId='';
 }

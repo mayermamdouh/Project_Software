@@ -2,6 +2,7 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import '../components.dart';
 import '../login/user_model_function.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'States_Register.dart';
@@ -104,19 +105,22 @@ class SoicalRegisterCubits extends Cubit<SoicalRegisterStates> {
     });
   }
 
-  var name;
-  Future getName() async{
-    FirebaseFirestore.instance
-        .collection('UserRegister')
-        .get()
-        .then((QuerySnapshot querySnapshot) {
-       querySnapshot.docs.forEach((doc) {
-        print(doc["Name"]);
-         name = doc["Name"];
 
 
-      });
-    });
-  }
+// var name;
+// Future getName() async{
+//   FirebaseFirestore.instance
+//       .collection('UserRegister')
+//       .get()
+//       .then((QuerySnapshot querySnapshot) {
+//      querySnapshot.docs.forEach((doc) {
+//       print(doc["Name"]);
+//        name = doc["Name"];
+//
+//
+//     });
+//   });
+// }
+//
 }
 
