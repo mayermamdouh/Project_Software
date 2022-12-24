@@ -16,22 +16,22 @@ class SqlDb{
 
    intialDb() async{
     String Databasepath = await getDatabasesPath(); //path al database 2ftrade
-    String path = join(Databasepath, 'DatabaseProjectSoftwarz.db');//Databasepath/DatabaseProjectSoftware.db // .db like photo ,Jbj
+    String path = join(Databasepath, 'DatabaseProjectSoftwarzzz.db');//Databasepath/DatabaseProjectSoftware.db // .db like photo ,Jbj
     Database mydb = await openDatabase(path, onCreate: _onCreare, version: 1 , onUpgrade: _onUpgrade);
     return mydb;
   }
   // tab lw 7bet 23ml update ll database zawed al version w hynfez upgrade gdeda
   // _onCreare createted one time if add a new table will not added
   _onUpgrade(Database db , int oldVersion , int newVersion){
-  print('onUpgrade Function');
+  print('onUpgrade Function============================');
   }
 
 
 
    _onCreare(Database db, int version)async{
      await db.execute(''' 
-     CREATE TABLE "Upload_Customer_Product_Data"(
-     "ItemID" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+     CREATE TABLE Upload_Customer_Product_Data(
+     ItemID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
      "ItemName" TEXT NOT NULL
 
      )

@@ -175,12 +175,6 @@ class _Register_pageState extends State<Register_page> {
                               isUpperCase: true,
                               function: () {
                                 if (FormKey2.currentState!.validate()) {
-                                  UserData.name = Nameconroller.text;
-                                  UserData.phoneNumber = Mobileconroller.text;
-                                  UserData.age = ChildAgeconroller.text;
-                                  UserData.email =  Emailconroller.text;
-                                  UserData.password = Passwordconroller.text;
-
                                   SoicalRegisterCubits.get(context).userRegister(
                                       name: Nameconroller.text,
                                       phoneNumber: Mobileconroller.text,

@@ -1,19 +1,38 @@
+
+//   FirebaseFirestore.instance
+//       .collection('UserRegister')
+//       .doc(uId)
+//       .update({
+//   "Name":Nameconroller.text,
+//   "PhoneNumber":Mobileconroller.text,
+//   "Age":ChildAgeconroller.text,
+//   "Password": Passwordconroller.text,
+//   }).then((result){
+//   print("user Update");
+//   }).catchError((onError){
+//   print(onError.toString());
+//   });
+// }
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_application_firebase/components.dart';
 import '../../bloks/CacheHelper.dart';
-import '../../components.dart';
-import '../../login/user_model_function.dart';
+
 
 class page4 extends StatefulWidget {
   const page4({Key? key}) : super(key: key);
+
 
   @override
   State<page4> createState() => _page0State();
 }
 
+
 class _page0State extends State<page4> {
   bool istrue = false;
+  bool istrue2 = false;
+  bool _loading = false;
   var Nameconroller = TextEditingController();
   var Emailconroller = TextEditingController();
   var Mobileconroller = TextEditingController();
@@ -21,9 +40,21 @@ class _page0State extends State<page4> {
   var Passwordconroller = TextEditingController();
   var ConfirmPassworconroller = TextEditingController();
   var FormKey3 = GlobalKey<FormState>();
+  var KeyFormData = GlobalKey<FormState>();
   bool isPassword2 = true;
-
   String uId = CacheHelper.getData(key: 'uId');
+
+
+  @override
+  void initState() {
+    print("initState Called");
+    super.initState();
+
+    //KeyFormData.currentContext;
+
+    // getUserDataIndividal();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +62,7 @@ class _page0State extends State<page4> {
         child: Column(
           children: [
             Padding(
-              padding:  EdgeInsets.all(20.0),
+              padding:  EdgeInsets.all(10.0),
               child: Center(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -48,41 +79,60 @@ class _page0State extends State<page4> {
                       width: double.infinity,
                     ),
                     SizedBox(height: 20,),
-                    Text('Name: ${UserData.name}',
-                      style: TextStyle(
-                          fontSize: 20,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold
-                      ),
-                    ),
-                    SizedBox(height: 10,),
-                    Text('Phone:  ${UserData.phoneNumber}',
-                      style: TextStyle(
-                          fontSize: 20,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold
-                      ),
-                    ),
-                    SizedBox(height: 10,),
-                    Text('Age:  ${UserData.age}',
-                      style: TextStyle(
-                          fontSize: 20,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold
-                      ),
-                    ),
-                    SizedBox(height: 10,),
-                    Text('Email:  ${UserData.email}',
-                      style: TextStyle(
-                          fontSize: 18,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold
-                      ),
-                    ),
-                    SizedBox(height: 30,),
-
+                     Container(
+                       width: double.infinity,
+                       child: Card(
+                         color: Colors.blue,
+                         elevation: 5,
+                         shape: RoundedRectangleBorder(
+                           borderRadius: BorderRadius.circular(10),
+                         ),
+                         child: Padding(
+                           padding: const EdgeInsets.all(8.0),
+                           child: Column(
+                             crossAxisAlignment: CrossAxisAlignment.start,
+                             children: [
+                               Text('Name: $userName ',
+                                 style: const TextStyle(
+                                     fontSize: 17,
+                                     color: Colors.black,
+                                     fontWeight: FontWeight.bold
+                                 ),
+                               ),
+                               SizedBox(height: 10,),
+                               Text('Phone: $userPhone ',
+                                 style: const TextStyle(
+                                     fontSize: 17,
+                                     color: Colors.black,
+                                     fontWeight: FontWeight.bold
+                                 ),
+                               ),
+                               SizedBox(height: 10,),
+                               Text('Age: $userAge ',
+                                 style:const TextStyle(
+                                     fontSize: 17,
+                                     color: Colors.black,
+                                     fontWeight: FontWeight.bold
+                                 ),
+                               ),
+                               SizedBox(height: 10,),
+                               Text('Email:  $userEmail',
+                                 style:const TextStyle(
+                                     fontSize: 17,
+                                     color: Colors.black,
+                                     fontWeight: FontWeight.bold
+                                 ),
+                               ),
+                               SizedBox(height: 10,),
+                             ],
+                           ),
+                         ),
+                       ),
+                     ),
+                    SizedBox(height: 20,),
                     Center(
                       child: ButtonLogin(
+                        color: Colors.blue,
                         width: 200,
                         height: 40,
                         text: 'Edit Profile',
@@ -93,49 +143,18 @@ class _page0State extends State<page4> {
                         },
                       ),
                     ),
-
-
-                    // Center(
-                    //   child: ButtonLogin(
-                    //     function: (){
-                    //       Container(
-                    //         height: 200,
-                    //         width: 100,
-                    //         decoration: BoxDecoration(
-                    //           borderRadius: BorderRadius.circular(20),
-                    //         ),
-                    //         child: Column(
-                    //           children:  [
-                    //             Text('mayer'),
-                    //           ],
-                    //         ),
-                    //       );
-                    //         //     FirebaseFirestore.instance
-                    //         //     .collection('UserRegister')
-                    //         //     .doc(uId)
-                    //         //     .update({
-                    //         //   "name":"mayer"
-                    //         // }).then((result){
-                    //         //   print("user Update");
-                    //         // }).catchError((onError){
-                    //         //   print("not Update onError");
-                    //         // });
-                    //
-                    //     },
-                    //     text: 'Edit to Profile ',
-                    //     width: 200,
-                    //     height: 50,
-                    //
-                    //
-                    //
-                    //   ),
-                    // ),
+                    SizedBox(height: 10,),
+                     Center(
+                      child: istrue2 ?  const Text('Update Profile successful !',style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize:15 ,
+                      ),)
+                      :  Container() ,
+                    ),
                     SizedBox(height: 30,),
                     Center(
                       child: istrue? FormEdit(): Container() ,
                     ),
-
-
                   ],
                 ),
               ),
@@ -144,7 +163,6 @@ class _page0State extends State<page4> {
         ),
       ) ,
     );
-
   }
 
 
@@ -152,7 +170,7 @@ class _page0State extends State<page4> {
   Widget FormEdit()=>  Card(
     elevation: 10,
     shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(80),
+      borderRadius: BorderRadius.circular(40),
 
     ),
     //clipBehavior: Cl,
@@ -263,8 +281,10 @@ class _page0State extends State<page4> {
                   text: 'save change',
                   function: () {
                     setState(() {
+                      istrue = false;
+                      istrue2 = true;
                      if (FormKey3.currentState!.validate()) {
-                       FirebaseFirestore.instance
+                         FirebaseFirestore.instance
                            .collection('UserRegister')
                            .doc(uId)
                            .update({
@@ -278,7 +298,6 @@ class _page0State extends State<page4> {
                          print(onError.toString());
                        });
                      }
-
                     });
                   },
                 ),
@@ -291,4 +310,20 @@ class _page0State extends State<page4> {
     ),
   );
 
-}
+
+
+  // Future<void> _getUserName() async {
+  //   FirebaseFirestore.instance
+  //       .collection('UserRegister')
+  //       .doc((uId)).get()
+  //       .then((value) {
+  //         print(value.toString());
+  //     // setState(() {
+  //     //   _userName = value.data.Name.toString();
+  //     // });
+  //   });
+  // }
+
+
+
+        }

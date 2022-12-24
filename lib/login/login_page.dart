@@ -97,7 +97,7 @@ class _login_pageState extends State<login_page> {
                           }
                         },
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 25.0,
                       ),
                       ButtonLogin(

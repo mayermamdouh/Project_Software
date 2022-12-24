@@ -106,7 +106,7 @@ class SoicalRegisterCubits extends Cubit<SoicalRegisterStates> {
   }
 
 
-
+//
 // var name;
 // Future getName() async{
 //   FirebaseFirestore.instance
@@ -121,6 +121,6 @@ class SoicalRegisterCubits extends Cubit<SoicalRegisterStates> {
 //     });
 //   });
 // }
-//
+
 }
 

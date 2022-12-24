@@ -1,29 +1,49 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
  String uId = '';
 
+
+String? userName;
+String? userAge;
+String? userPhone;
+String? userEmail;
+
+getUserDataIndividal() async {
+  //query the user photo
+  FirebaseFirestore.instance.collection("UserRegister").doc(uId).snapshots().listen((event) {
+    userName = event.get("Name");
+    userAge = event.get("Age");
+    userPhone = event.get("PhoneNumber");
+    userEmail = event.get("Email");
+  });
+}
+
+
 Widget ButtonLogin({
    double? width,
-  Color background = Colors.blue,
+  Color? color = Colors.blue,
   bool isUpperCase = true,
    double? height,
+   double? fontSize  = 15.0,
   void Function()? function,
   required String text,
 }) =>
     Container(
+
       width: width,
       height: height,
       decoration: BoxDecoration(
-        color: background,
+        color: color,
         borderRadius: BorderRadius.circular(10),
       ),
       child: MaterialButton(
         onPressed: function,
         child: Text(
           isUpperCase ? text.toUpperCase() : text.toLowerCase(),
-          style: const TextStyle(
+          style:  TextStyle(
             color: Colors.white,
-            fontSize: 15.0,
+            fontSize: fontSize,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -62,7 +82,7 @@ Widget TextButtom({
                   ),
                 )
               : null,
-          border: OutlineInputBorder(),
+          border:  OutlineInputBorder(),
 
       ),
     );

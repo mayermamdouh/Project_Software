@@ -8,7 +8,7 @@ import 'package:flutter_application_firebase/AppFiles/pages/page4.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../components.dart';
-import '../login/user_model_function.dart';
+
 import 'StatesApp.dart';
 
 class SoicalLoginCubits extends Cubit<SocialStates> {
@@ -24,19 +24,31 @@ class SoicalLoginCubits extends Cubit<SocialStates> {
  //late User_Register_model model;
 
   // function to return data of user register
-void getUserData(){
+void getUserData() async{
     emit(SoicalGetUserLoadingState());
     FirebaseFirestore.instance.collection('UserRegister')
         .doc(uId).get().then((value) {
-          print(value.data());
+         print(value.data());
+
+
         //  model = User_Register_model.fromJson(value.data());
           emit(SoicalGetUserSuccessState());
     })
-
         .catchError((error){
           emit(SoicalGetUserErrorState(error.toString()));
     });
 }
+  // Future getData() async{
+  //   var collection = FirebaseFirestore.instance.collection('UserRegister');
+  //   var docSnapshot = await collection.doc('uId').get();
+  //   if (docSnapshot.exists) {
+  //     Map<String, dynamic>? data = docSnapshot.data();
+  //     var value = data?['Name'];
+  //     print('$value');
+  //     // <-- The value you want to retrieve.
+  //     // Call setState if needed.
+  //   }
+  // }
 
 int CurrentIndex = 0;
   int CurrentIndex2 = 0;
@@ -61,6 +73,17 @@ void ChangeNavBarScrrens(int index){
   emit(SoicalChangeNavBarState());
 
 }
+
+
+     getUserDataIndividal() async {
+    //query the user photo
+        FirebaseFirestore.instance.collection("UserRegister").doc(uId).snapshots().listen((event) {
+        userName = event.get("Name");
+        userAge = event.get("Age");
+        userPhone = event.get("PhoneNumber");
+        userEmail = event.get("Email");
+    });
+  }
 
 
 }

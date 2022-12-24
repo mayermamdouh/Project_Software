@@ -1,10 +1,9 @@
-import 'dart:developer';
-
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../bloks/Cubit_Register.dart';
 import '../../bloks/States_Register.dart';
+import '../pages Category/T-Shirt_Category.dart';
 
 class page0 extends StatefulWidget {
   const page0({Key? key}) : super(key: key);
@@ -116,71 +115,127 @@ class _page0State extends State<page0> {
                         .toList(),
                   ),
                   SizedBox(height: 10,),
-                  ListView.separated(
-                    physics: NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    scrollDirection: Axis.vertical,
-                    itemBuilder: (context, index) {
-                      return Row(
+                  // ListView.separated(
+                  //   physics: NeverScrollableScrollPhysics(),
+                  //   shrinkWrap: true,
+                  //   scrollDirection: Axis.vertical,
+                  //   itemBuilder: (context, index) {
+                  //     return Row(
+                  //       children: [
+                  //         Expanded(
+                  //           child: InkWell(
+                  //             onTap:(){},
+                  //             child: Card(
+                  //
+                  //               elevation: 10,
+                  //               clipBehavior:Clip.antiAlias ,
+                  //               shape: RoundedRectangleBorder(
+                  //               borderRadius: BorderRadius.circular(10.0),
+                  //               ),
+                  //
+                  //               child: Stack(
+                  //                 alignment: Alignment.center,
+                  //                 children: [
+                  //                   Ink.image(image: NetworkImage('https://rose-kids.com/wp-content/uploads/elementor/thumbs/Boys-1-scaled-pftcew592jorrc9r1gwt00u6wq9rfjo55fgh9gaubc.jpg'),
+                  //                   fit: BoxFit.cover,
+                  //                     height: 200,
+                  //                   ),
+                  //                   const Text(
+                  //                     'T-shirt',
+                  //                     style: TextStyle(
+                  //                     fontWeight: FontWeight.bold,
+                  //                       color: Colors.white,
+                  //                       fontSize: 24,
+                  //
+                  //                   ),
+                  //                   ),
+                  //                   // Positioned(
+                  //                   //   bottom:20,
+                  //                   //   right:20,
+                  //                   //   left:20,
+                  //                   //   child: Text(
+                  //                   //     'T_Sherit',
+                  //                   //     style: TextStyle(
+                  //                   //       fontWeight: FontWeight.bold,
+                  //                   //       color: Colors.white,
+                  //                   //       fontSize: 24,
+                  //                   //
+                  //                   //     ),
+                  //                   //   ),
+                  //                   // ),
+                  //                 ],
+                  //               ),
+                  //             ),
+                  //
+                  //             ),
+                  //           ),
+                  //
+                  //       ],
+                  //     );
+                  //   },
+                  //   separatorBuilder: (context, index) {
+                  //     return const SizedBox(
+                  //       height: 10.0,
+                  //     );
+                  //   },
+                  //   itemCount: 3,
+                  // ),
+                Row(
+                  children: [
+                 Expanded(
+                  child: InkWell(
+                    onTap:(){
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context)=>T_ShirtPage()));
+                    },
+                    child: Card(
+
+                      elevation: 10,
+                      clipBehavior:Clip.antiAlias ,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+
+                      child: Stack(
+                        alignment: Alignment.center,
                         children: [
-                          Expanded(
-                            child: InkWell(
-                              onTap:(){},
-                              child: Card(
+                          Ink.image(image: NetworkImage('https://rose-kids.com/wp-content/uploads/elementor/thumbs/Boys-1-scaled-pftcew592jorrc9r1gwt00u6wq9rfjo55fgh9gaubc.jpg'),
+                            fit: BoxFit.cover,
+                            height: 200,
+                          ),
+                          const Text(
+                            'T-shirt',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                              fontSize: 24,
 
-                                elevation: 10,
-                                clipBehavior:Clip.antiAlias ,
-                                shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.0),
-                                ),
-
-                                child: Stack(
-                                  alignment: Alignment.center,
-                                  children: [
-                                    Ink.image(image: NetworkImage('https://rose-kids.com/wp-content/uploads/elementor/thumbs/Boys-1-scaled-pftcew592jorrc9r1gwt00u6wq9rfjo55fgh9gaubc.jpg'),
-                                    fit: BoxFit.cover,
-                                      height: 200,
-                                    ),
-                                    Text(
-                                      'T-shirt',
-                                      style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                        color: Colors.white,
-                                        fontSize: 24,
-
-                                    ),
-                                    ),
-                                    // Positioned(
-                                    //   bottom:20,
-                                    //   right:20,
-                                    //   left:20,
-                                    //   child: Text(
-                                    //     'T_Sherit',
-                                    //     style: TextStyle(
-                                    //       fontWeight: FontWeight.bold,
-                                    //       color: Colors.white,
-                                    //       fontSize: 24,
-                                    //
-                                    //     ),
-                                    //   ),
-                                    // ),
-                                  ],
-                                ),
-                              ),
-
-                              ),
                             ),
-
+                          ),
+                          // Positioned(
+                          //   bottom:20,
+                          //   right:20,
+                          //   left:20,
+                          //   child: Text(
+                          //     'T_Sherit',
+                          //     style: TextStyle(
+                          //       fontWeight: FontWeight.bold,
+                          //       color: Colors.white,
+                          //       fontSize: 24,
+                          //
+                          //     ),
+                          //   ),
+                          // ),
                         ],
-                      );
-                    },
-                    separatorBuilder: (context, index) {
-                      return const SizedBox(
-                        height: 10.0,
-                      );
-                    },
-                    itemCount: 3,
+                      ),
+                    ),
+
                   ),
+                ),
+
+              ],
+            ),
 
                 ],
               ),
