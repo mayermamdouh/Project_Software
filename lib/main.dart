@@ -54,21 +54,18 @@ class MyApp extends StatelessWidget {
      required this.startWidget
   });
 
-
   @override
    Widget build(BuildContext context) {
-
     return MultiBlocProvider(
       providers:  [
         BlocProvider(
-          create: (BuildContext context) =>SoicalLoginCubits()..getUserData()..getUserDataIndividal() ,
+          create: (BuildContext context) =>SoicalLoginCubits()..getUserData()..getUserDataIndividal(),
         ),
         BlocProvider(
-          create: (BuildContext context) =>SoicalRegisterCubits() ,//..getName()
+          create: (BuildContext context) =>SoicalRegisterCubits(),//..getName()
         ),
        ],
       child: BlocConsumer<SoicalLoginCubits, SocialStates>(
-
         listener: (context, state) {},
         builder: (context, state) {
           return  MaterialApp(
@@ -76,15 +73,7 @@ class MyApp extends StatelessWidget {
             appBarTheme: const AppBarTheme(
               iconTheme: IconThemeData(color: Colors.black),
               color: Colors.white,
-
             ),
-              // bottomNavigationBarTheme: BottomNavigationBarThemeData(
-              //   type: BottomNavigationBarType.fixed,
-              //   selectedItemColor: Colors.deepOrange,
-              //   selectedIconTheme: IconThemeData(color: Colors.black),
-              //   elevation: 20.0,
-              // ),
-
             ),
             debugShowCheckedModeBanner: false,
             home:startWidget ,

@@ -1,8 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
- String uId = '';
+String uId = '';
 
+bool  isTrue_Product = false;
+bool isFavorite1 = false;
+late String url;
 
 String? userName;
 String? userAge;
@@ -11,7 +14,7 @@ String? userEmail;
 
 getUserDataIndividal() async {
   //query the user photo
-  FirebaseFirestore.instance.collection("UserRegister").doc(uId).snapshots().listen((event) {
+  await FirebaseFirestore.instance.collection("UserRegister").doc(uId).snapshots().listen((event) {
     userName = event.get("Name");
     userAge = event.get("Age");
     userPhone = event.get("PhoneNumber");
@@ -40,7 +43,7 @@ Widget ButtonLogin({
       child: MaterialButton(
         onPressed: function,
         child: Text(
-          isUpperCase ? text.toUpperCase() : text.toLowerCase(),
+          isUpperCase ? text.toUpperCase() : text.toString(),
           style:  TextStyle(
             color: Colors.white,
             fontSize: fontSize,
@@ -60,6 +63,7 @@ Widget TextButtom({
   bool isPassword = false,
   void Function()? suffixpress,
    bool? condition,
+  TextInputType? keyboardType,
 }) =>
    TextFormField(
         controller: controller,

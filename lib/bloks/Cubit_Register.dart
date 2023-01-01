@@ -12,18 +12,7 @@ class SoicalRegisterCubits extends Cubit<SoicalRegisterStates> {
 
   static SoicalRegisterCubits get(context) => BlocProvider.of(context);
 
-  // @override
-  // void onChange(Change<SoicalRegisterStates> change) {
-  //   super.onChange(change);
-  //   debugPrint(change.toString());
-  // }
-//   IconData suffix = Icons.visibility_outlined;
-// bool isPassword = true;
-//   void ChangePasswordVisibilty(){
-//     isPassword = !isPassword;
-//     suffix = isPassword ? Icons.visibility_outlined : Icons.visibility_off_outlined;
-//     emit(SoicalChangePasswordVisbility());
-//   }
+
   String? errorRegister;
   //function al register
   void userRegister({
@@ -70,6 +59,7 @@ class SoicalRegisterCubits extends Cubit<SoicalRegisterStates> {
   }
 
 
+
 // de function b set al data fe UserRegister collection al at create
   //late var number ;
   void User_Register_create({
@@ -104,23 +94,6 @@ class SoicalRegisterCubits extends Cubit<SoicalRegisterStates> {
       print(error );
     });
   }
-
-
-//
-// var name;
-// Future getName() async{
-//   FirebaseFirestore.instance
-//       .collection('UserRegister')
-//       .get()
-//       .then((QuerySnapshot querySnapshot) {
-//      querySnapshot.docs.forEach((doc) {
-//       print(doc["Name"]);
-//        name = doc["Name"];
-//
-//
-//     });
-//   });
-// }
 
 }
 

@@ -42,15 +42,6 @@ class SoicalLoginCubits extends Cubit<SoicalLoginStates> {
     } catch (e) {
       print(e);
     }
-//   FirebaseAuth.instance
-//       .createUserWithEmailAndPassword(email: Email, password: Password)
-//       .then((value) {
-//     print(value.user!.email);
-//     print(value.user!.uid);
-//   }).catchError((error) {
-//     print('Error to get Email and Password in userRegister');
-//     print(error.toString());
-//   });
   }
 
 }

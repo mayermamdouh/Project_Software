@@ -1,10 +1,12 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import '../../bloks/Cubit_Register.dart';
 import '../../bloks/States_Register.dart';
-import '../pages Category/T-Shirt_Category.dart';
-
+import '../../components.dart';
+import '../../login/user_model_function.dart';
+import 'SearchPage.dart';
 class page0 extends StatefulWidget {
   const page0({Key? key}) : super(key: key);
 
@@ -18,20 +20,51 @@ class _page0State extends State<page0> {
     'https://img.freepik.com/free-photo/cute-stylish-children_155003-8330.jpg?w=2000',
     'https://wallpaperaccess.com/full/5267656.jpg',
   ];
-  //
-  // final List<String> titles = [
-  //   ' Casual Collections',
-  // ];
-  int _currentIndex = 0;
 
+  @override
+  void setState(VoidCallback fn) {
+    // TODO: implement setState
+    super.setState(fn);
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+  }
+
+  int _currentIndex = 0;
+  final productcontroller = Get.put(ProductController());
   @override
   Widget build(BuildContext context) {
     return  BlocConsumer<SoicalRegisterCubits,SoicalRegisterStates>(
       listener: ( context,  state) {  },
       builder: ( context, state) {
         return Scaffold(
+          appBar: AppBar(
+            title:  const Center(
+              child: Text(
+                "Reuse clothes",
+                style: TextStyle(
+                  color: Colors.blue
+                ),
+              ),
+            ),
+            actions: [
+              IconButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const Search()),
+                  );
+                },
+                icon: const Icon(Icons.search),
+              )
+            ],
+          ),
           body: Padding(
-            padding:  const EdgeInsets.all(5.0),
+            padding:  EdgeInsets.all(5.0),
             child: SingleChildScrollView(
               child: Column(
                 children: [
@@ -115,139 +148,124 @@ class _page0State extends State<page0> {
                         .toList(),
                   ),
                   SizedBox(height: 10,),
-                  // ListView.separated(
-                  //   physics: NeverScrollableScrollPhysics(),
-                  //   shrinkWrap: true,
-                  //   scrollDirection: Axis.vertical,
-                  //   itemBuilder: (context, index) {
-                  //     return Row(
-                  //       children: [
-                  //         Expanded(
-                  //           child: InkWell(
-                  //             onTap:(){},
-                  //             child: Card(
-                  //
-                  //               elevation: 10,
-                  //               clipBehavior:Clip.antiAlias ,
-                  //               shape: RoundedRectangleBorder(
-                  //               borderRadius: BorderRadius.circular(10.0),
-                  //               ),
-                  //
-                  //               child: Stack(
-                  //                 alignment: Alignment.center,
-                  //                 children: [
-                  //                   Ink.image(image: NetworkImage('https://rose-kids.com/wp-content/uploads/elementor/thumbs/Boys-1-scaled-pftcew592jorrc9r1gwt00u6wq9rfjo55fgh9gaubc.jpg'),
-                  //                   fit: BoxFit.cover,
-                  //                     height: 200,
-                  //                   ),
-                  //                   const Text(
-                  //                     'T-shirt',
-                  //                     style: TextStyle(
-                  //                     fontWeight: FontWeight.bold,
-                  //                       color: Colors.white,
-                  //                       fontSize: 24,
-                  //
-                  //                   ),
-                  //                   ),
-                  //                   // Positioned(
-                  //                   //   bottom:20,
-                  //                   //   right:20,
-                  //                   //   left:20,
-                  //                   //   child: Text(
-                  //                   //     'T_Sherit',
-                  //                   //     style: TextStyle(
-                  //                   //       fontWeight: FontWeight.bold,
-                  //                   //       color: Colors.white,
-                  //                   //       fontSize: 24,
-                  //                   //
-                  //                   //     ),
-                  //                   //   ),
-                  //                   // ),
-                  //                 ],
-                  //               ),
-                  //             ),
-                  //
-                  //             ),
-                  //           ),
-                  //
-                  //       ],
-                  //     );
-                  //   },
-                  //   separatorBuilder: (context, index) {
-                  //     return const SizedBox(
-                  //       height: 10.0,
-                  //     );
-                  //   },
-                  //   itemCount: 3,
-                  // ),
-                Row(
-                  children: [
-                 Expanded(
-                  child: InkWell(
-                    onTap:(){
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context)=>T_ShirtPage()));
-                    },
-                    child: Card(
+                  Container(
+                    height: 453,
+                    child: ListView.builder(
+                        itemCount:productcontroller.products.length,
+                        itemBuilder: (BuildContext context, int index) {
 
-                      elevation: 10,
-                      clipBehavior:Clip.antiAlias ,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-
-                      child: Stack(
-                        alignment: Alignment.center,
-                        children: [
-                          Ink.image(image: NetworkImage('https://rose-kids.com/wp-content/uploads/elementor/thumbs/Boys-1-scaled-pftcew592jorrc9r1gwt00u6wq9rfjo55fgh9gaubc.jpg'),
-                            fit: BoxFit.cover,
-                            height: 200,
-                          ),
-                          const Text(
-                            'T-shirt',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                              fontSize: 24,
-
-                            ),
-                          ),
-                          // Positioned(
-                          //   bottom:20,
-                          //   right:20,
-                          //   left:20,
-                          //   child: Text(
-                          //     'T_Sherit',
-                          //     style: TextStyle(
-                          //       fontWeight: FontWeight.bold,
-                          //       color: Colors.white,
-                          //       fontSize: 24,
-                          //
-                          //     ),
-                          //   ),
-                          // ),
-                        ],
-                      ),
-                    ),
-
+                          return  CatalogProductCard(index : index);
+                        }),
                   ),
-                ),
-
-              ],
-            ),
 
                 ],
               ),
             ),
-            // ListView.builder(
-            //     itemBuilder:
-            // ),
           ),
         );
       },
 
 
+    );
+  }
+
+
+}
+
+
+class CatalogProductCard extends StatelessWidget {
+  CatalogProductCard({Key? key, required this.index, }) : super(key: key);
+  final catcontroller = Get.put(CartController());
+  final productcontroller = Get.put(ProductController());
+  final catcontrollerFaveriot = Get.put(CartControllerFaveriot());
+
+  final int index;
+   bool isFavorite1 = false;
+
+  final ValueNotifier sideMenuValue = ValueNotifier(0);
+  @override
+  Widget build(BuildContext context) {
+    return Obx(()=>
+        Padding(
+          padding: const EdgeInsets.all(5.0),
+          child: InkWell(
+            onTap: (){
+
+            },
+            child: Card(
+              elevation: 5,
+              clipBehavior: Clip.antiAlias,
+              shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+              ),
+              child: Container(
+                height: 210,
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Padding(
+                        padding:  EdgeInsets.only(top: 20),
+                        child: Column(
+                          children: [
+                            Image.network(productcontroller.products[index].Photo,fit: BoxFit.contain,height: 150,),
+                          //height: 130,width: double.infinity,
+                          ],
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: Padding(
+                        padding: EdgeInsets.only(left: 5,top: 25),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text( productcontroller.products[index].ItemName,maxLines: 1,style: TextStyle(color: Colors.black),),
+                            SizedBox(height: 2,),
+                            Text(productcontroller.products[index].ItemDescription,maxLines: 3,style: TextStyle(color: Colors.black54,)),
+                            SizedBox(height: 2,),
+                            Text(productcontroller.products[index].Size,maxLines: 1,style: TextStyle(color: Colors.blue)),
+                            SizedBox(height: 2,),
+                            Text( productcontroller.products[index].Category,maxLines: 1,),
+                            SizedBox(height: 2,),
+                            Text(productcontroller.products[index].ChildAgeYear,maxLines: 1,),
+                            SizedBox(height: 2,),
+                            Text('\$${productcontroller.products[index].Price}',maxLines: 1,style: TextStyle(color: Colors.deepOrangeAccent)),
+                            SizedBox(height: 2,),
+                           Expanded(
+                             child: Padding(
+                               padding:  EdgeInsets.only(right: 10,),
+                               child: Row(
+                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                 children: [
+                                 IconButton(
+                                   onPressed: (){
+                                   catcontroller.addProduct(productcontroller.products[index]);
+                                   var snackBar = SnackBar(content: Text('Product Add To Cart'));
+                                   ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                                 }, icon: Icon(Icons.add_shopping_cart)),
+                                 IconButton(
+                                     onPressed: (){
+                                       isFavorite1 = !isFavorite1;
+                                       catcontrollerFaveriot.addProduct(productcontroller.products[index]);
+                                       var snackBar = SnackBar(content: Text('Product Add To Love'));
+                                       ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                                     },
+                                     icon: Icon(Icons.favorite,color: isFavorite1 ?Colors.red:Colors.black87 ,)),
+                               ],),
+                             ),
+                           ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
     );
   }
 }

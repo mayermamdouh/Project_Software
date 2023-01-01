@@ -183,12 +183,6 @@ class _Register_pageState extends State<Register_page> {
                                       password: Passwordconroller.text,
                                  //   isEmailVerified: false
                                        );
-                                //   if(Value_Set_Redister == 'Set_Redister_successed' && error_Register =='' ){
-                                //      openMyPage();
-                                //    //  }
-                                //   if(errorRegister == null){
-                                //     return openMyPage();
-                                //   }
                                 };
 
                               }),
@@ -196,7 +190,6 @@ class _Register_pageState extends State<Register_page> {
                         const SizedBox(
                           height: 15.0,
                         ),
-
                       ],
                     ),
                   ),
@@ -204,7 +197,6 @@ class _Register_pageState extends State<Register_page> {
               ),
             ),
           ),
-
       ),
     );
   }
@@ -213,7 +205,7 @@ class _Register_pageState extends State<Register_page> {
     Navigator.push<void>(
       context,
       MaterialPageRoute<void>(
-        builder: (BuildContext context) => Store_page(),
+        builder: (BuildContext context) => const Store_page(),
       ),
     );
   }

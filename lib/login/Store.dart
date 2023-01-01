@@ -20,26 +20,13 @@ class _Store_pageState extends State<Store_page> {
       builder: (BuildContext context, state) {
         var CubitFile = SoicalLoginCubits.get(context);
         return Scaffold(
-          appBar: AppBar(
-            elevation: 0,
-            title: Text(CubitFile.Title[CubitFile.CurrentIndex]) ,
-            // shape: const RoundedRectangleBorder(
-            //   borderRadius: BorderRadius.only(
-            //       bottomRight: Radius.circular(20),
-            //       bottomLeft: Radius.circular(20)),
-            // ),
-            actions: [
-              IconButton(onPressed: (){}, icon: const Icon(Icons.notifications)),
-              IconButton(onPressed: (){}, icon: const Icon(Icons.search_sharp)),
-            ],
 
-          ),
           body: CubitFile.Screens[CubitFile.CurrentIndex],
           bottomNavigationBar: BottomNavigationBar(
             currentIndex: CubitFile.CurrentIndex,
             type: BottomNavigationBarType.fixed,
-            unselectedItemColor: Colors.grey,
-            selectedItemColor: Colors.black,
+            unselectedItemColor: Colors.deepOrangeAccent,
+            selectedItemColor: Colors.blue,
             backgroundColor: Colors.white,
 
             onTap: (index){

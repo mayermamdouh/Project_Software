@@ -46,12 +46,14 @@ dependencies:
 
   conditional_builder: ^1.0.2
   cupertino_icons: ^1.0.2
-  cloud_firestore: ^4.2.0
+  cloud_firestore: ^4.3.0
   firebase_core: ^2.4.0
   firebase_auth: ^4.2.0
   mysql1: ^0.20.0
   firebase_storage: ^11.0.8
   image_picker: ^0.8.6
+  get: ^4.6.5
+
 
 
 

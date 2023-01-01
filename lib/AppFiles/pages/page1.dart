@@ -6,11 +6,7 @@ import 'dart:io';
 import '../../components.dart';
 import '../../login/user_model_function.dart';
 import 'package:path/path.dart' as p;
-
-
 class page1 extends StatefulWidget {
-
-
   @override
   State<page1> createState() => _State();
 }
@@ -20,29 +16,20 @@ class _State extends State<page1> {
   void initState() {
     // TODO: implement initState
     super.initState();
-   // controller.clear();
   }
-  @override
 
-
-
-  //crate instance
   SqlDb sqlDb = SqlDb();
   var ItemName = TextEditingController();
   var ItemDescription = TextEditingController();
-  var ChildAgeMonth = TextEditingController();
+  var Price = TextEditingController();
   var ChildAgeYear = TextEditingController();
   var Size = TextEditingController();
   var Category_cat = TextEditingController();
   var FormKey4 = GlobalKey<FormState>();
-  bool isTrue1 = true;
-  // imageFile
-
+   bool isTrue1 = false;
+  bool isTrue2 = false;
   File? imageFile;
-   String? _url;
-  String? url;
-  // File? file = File(XFile!.path);
-  //File file  = File(imageFile!.path);
+
   showOption(BuildContext context){
     return showDialog(context: context,
         builder: (context)=>
@@ -73,6 +60,7 @@ class _State extends State<page1> {
     setState(() {
       //imageFile = image as File? ;
        imageFile = File(image!.path);
+
     });
     Navigator.pop(context);
   }
@@ -92,6 +80,7 @@ class _State extends State<page1> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -117,7 +106,7 @@ class _State extends State<page1> {
                           child:imageFile != null ? ClipRRect(
                               borderRadius: BorderRadius.circular(8.0),
                               child: Image.file(imageFile!,width: 300,height: 200,fit: BoxFit.cover,))
-                        : Image.network('https://cdn.pixabay.com/photo/2015/12/09/22/38/camera-1085705__480.png'),
+                        : Icon(Icons.photo_library_outlined,size: 200,),
                       //Image.network('https://cdn.pixabay.com/photo/2015/12/09/22/38/camera-1085705__480.png')
                       ),
                       SizedBox(height: 15,),
@@ -125,19 +114,40 @@ class _State extends State<page1> {
                         width: 160,
                         height: 35,
                         text: 'Uplaod Photo',
+                        isUpperCase: false ,
                         function: () {
                           setState(() {
                             showOption(context);
                           });
                         },
                       ),
+                      SizedBox(height: 10,),
+                      ButtonLogin(
+                        width: 200,
+                        height: 35,
+                        isUpperCase: false ,
+                        text: 'Enter information ',
+                        function: () {
+                          setState(() {
+                            isTrue2 = true;
+                            UploadImage();
+                          });
+                        },
+                      ),
                       SizedBox(height: 20,),
-                      isTrue1 ? FormUpdateProduct(): const Center(
+                       isTrue2 ? FormUpdateProduct(): Container(),
+                      isTrue1 ? const Center(
                         child:  Text(' Product Publishing successful !',style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize:15 ,
                         ),),
-                      ),
+                      ): Container(),
+
+
+
+
+
+
 
                       // CircleAvatar(
                       //   backgroundImage: imageFile==null? null : FileImage(imageFile!),
@@ -192,9 +202,10 @@ class _State extends State<page1> {
               ),
               SizedBox(height: 10,),
               TextButtom(
-                controller: ChildAgeMonth,
+                controller: Price,
                 icon: Icons.drive_file_rename_outline,
-                lable: 'Child Age Month',
+                keyboardType: TextInputType.number,
+                lable: 'Price',
                 validator: (value) {
                   if (value!.isEmpty) {
                     return 'Child Age Month must be not empty';
@@ -212,7 +223,6 @@ class _State extends State<page1> {
                   }
                 },
               ),
-
               SizedBox(height: 10,),
               TextButtom(
                 controller: Size,
@@ -235,7 +245,6 @@ class _State extends State<page1> {
                   }
                 },
               ),
-
               SizedBox(height: 20,),
               ButtonLogin(
                 width: 200,
@@ -243,46 +252,44 @@ class _State extends State<page1> {
                 text: 'publishing',
                 function: () {
                   setState(() {
-                  isTrue1 = false;
                   if (FormKey4.currentState!.validate()) {
-                    Upload_Product_create(
+                    isTrue2 = false;
+                    isTrue1 = true;
+                     Upload_Product_create(
                         ItemName:ItemName.text ,
                         ItemDescription: ItemDescription.text,
-                        ChildAgeMonth: ChildAgeMonth.text,
+                         Price:  int.parse(Price.text ),
                         ChildAgeYear: ChildAgeYear.text,
                         Size: Size.text,
-                        Category:  Category_cat.text,
-                     // Photo:imageFile,
-
-
+                        Category: Category_cat.text,
+                        Photo: url,
                     );
-                    UploadImage();
-
                   }
+                  // FirebaseFirestore.instance
+                  //     .collection('Product')
+                  //     .doc(ItemName.text )
+                  //     .update({
+                  //   "Photo":url,
+                  //
+                  // });
                   });
                 },
               ),
+
             ],
           ),
         ),
 
       );
 
-// void ImageUpload()async{
-//   var imageee = await ImagePicker().pickImage(source: ImageSource.camera) ;
-//   setState(() {
-//     imageFile = imageee as File?;
-//   });
-// }
-
    UploadImage() async {
-  try {
-    //String url;
+    try {
     FirebaseStorage storageImage = FirebaseStorage.instanceFor(
         bucket: 'gs://firstprojectfirebase-3f25f.appspot.com');
     Reference ref = storageImage.ref().child(
         p.basename(imageFile!.path)); // name image
-    UploadTask storageUploadTask = ref.putFile(imageFile!); // ref = file
+    UploadTask storageUploadTask = ref.putFile(imageFile!);
+    // ref = file
 
     storageUploadTask.whenComplete(() async{
       try{
@@ -291,32 +298,19 @@ class _State extends State<page1> {
         print("Error");
       }
       print(url);
-    });
 
-    // storageUploadTask.then((res) {
-    //   res.ref.getDownloadURL();
-    //   // res.ref.getDownloadURL() as String?;
-    //   // url = (res.ref.getDownloadURL()).toString();
-    //   // print(url);
-    // });
-    //url =storageUploadTask.ref.getDownloadURL() ;
-   // print(url);
+    });
     setState(() {
-      _url = url;
+       url;
     });
   }catch(error){
     print(error.toString());
   }
-
-  // storageUploadTask.whenComplete(() {
-  //   url = ref.getDownloadURL() as String;
-  // }).catchError((onError) {
-  //   print(onError);
-  // });
-  // return url;
-
 }
-
 }
 
 
+
+
+
+//
